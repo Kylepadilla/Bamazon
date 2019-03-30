@@ -1,0 +1,23 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "This app allows you to purchase my items",
+  "main": "bamazon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kylepadilla/Bamazon.git"
+  },
+  "author": "Kyle Padilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kylepadilla/Bamazon/issues"
+  },
+  "homepage": "https://github.com/Kylepadilla/Bamazon#readme",
+  "dependencies": {
+    "inquirer": "^6.2.2",
+    "mysql": "^2.16.0"
+  }
+}
