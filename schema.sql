@@ -7,26 +7,27 @@ CREATE TABLE products(
     item_id INT NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(255) NOT NULL,
     department_name VARCHAR(255) NOT NULL,
-    price INT(10) NOT NULL,1
+    price FLOAT(10,2) NOT NULL,
+    weightKg FLOAT(10,2) NOT NULL,
     stock_quantity INT(10) NOT NULL,
     PRIMARY KEY (item_id)
 );
 
 SELECT * FROM products;
 
-INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Iphone", "electronics", 1200, 10),
-        ("Xbox", "electronics", 400, 5),
-        ("Dell 17", "electronics", 1600, 2),
-        ("Keyboard", "electronics", 120, 6),
-        ("Recliner", "homegoods", 700, 1),
-        ("Towel", "homegoods", 12, 5),
-        ("rake", "outdoors", 19.99, 8),
-        ("shovel", "outdoors", 34, 12),
-        ("lawnmower", "outdoors", 5000, 5),
-        ("mens hat", "clothing", 25, 10),
-        ("t-shirt", "clothing", 35, 25),
-        ("coat", "clothing", 200, 2);
+INSERT INTO products (product_name, department_name, price, weightKg, stock_quantity)
+VALUES ("Iphone x", "electronics", 1200, .143, 10),
+        ("Xbox one x", "electronics", 400, 38.10, 5),
+        ("Dell 17r4 alienware laptop", "electronics", 2400, 42.00, 2),
+        ("CORSAIR K70 RGB MK.2 Mechanical Gaming Keyboard", "electronics", 129.99, 1.25, 6),
+        ("CORSAIR M65 Pro RGB - FPS Gaming Mouse", "electronics", 700, 0.17, 1),
+        ("Acoustic foam tiles soundproofing foam panels", "homegoods", 18.99, .41, 5),
+        ("Level 20 RGB & Level 20 GT BattleStation Gaming Desks", "homegoods", 700.00, 140.2, 8),
+        ("shovel", "outdoors", 34, 12, 12),
+        ("lawnmower", "outdoors", 5000, 14000, 5),
+        ("mens hat", "clothing", 25, .7, 10),
+        ("t-shirt", "clothing", 35, .7, 25),
+        ("coat", "clothing", 200, 1, 2);
 
 
 /* CREATE TABLE department(
