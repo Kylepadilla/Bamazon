@@ -99,7 +99,7 @@ console.log("------------------------end of results-----------------------")
         
         });
  }else{
-            console.log("oooops! It looks like we dont have enough inn stock to fill this order. Try reducing the quantity.")
+            console.log("oooops! It looks like we dont have enough inn stock to fill this order. Try reducing the number of items you are attempting to purchase.")
             console.log("dont worry I canceled this order for you...")
 
             newOrder()

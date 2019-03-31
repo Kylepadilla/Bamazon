@@ -7,24 +7,20 @@ Bamazon is an Amazon-like storefront with the MySQL skills I learned this unit. 
 
 ### Customer Portal
 
- The Bamazon app prompts users with two messages.
+ The Bamazon app prompts users with two messages. One that ask the customer the ID of the product they would like to buy. The second message asks how many units of the product they would like to buy.
 
-   * The first should ask them the ID of the product they would like to buy.
-   * The second message should ask how many units of the product they would like to buy.
+Once the customer has placed the order, the Bamazon app should check if there is enough of the product to meet the customer's request. If not, the Bamazon will log the phrase 
+>`oooops! It looks like we dont have enough inn stock to fill this order. Try reducing the number of items you are attempting to purchase.`
 
-7. Once the customer has placed the order, the Bamazon app should check if there is enough of the product to meet the customer's request.
+, and then prevent the order from going through.
 
-   * If not, the Bamazon will log the phrase `oooops! It looks like we dont have enough inn stock to fill this order. Try reducing the quantity.`, and then prevent the order from going through.
+However, if Bamazon _does_ have enough of the product, the app will fulfill the customer's order. the Bamazon SQL database will automatically update to reflect the remaining quantity.Once the update goes through,  the total cost of their purchase will be displayed.
 
-8. However, if Bamazon _does_ have enough of the product, the app will fulfill the customer's order.
-   * This will update the SQL database to reflect the remaining quantity.
-   * Once the update goes through,  the total cost of their purchase will be displayed.
-
-Click here to watch a quick video on how Bamazon customer portal works!
+* Click here to watch a quick video on how Bamazon customer portal works!
 
 ### Manager Portal
 
-* The Bamazon Manager Portal will allow authorized users to chose from the following menue:
+* The Bamazon Manager Portal will allow authorized users to chose from the following menu:
 
     * View Products for Sale: 
     
