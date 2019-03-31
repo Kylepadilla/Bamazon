@@ -30,10 +30,17 @@ VALUES ("Iphone x", "electronics", 1200, .143, 10),
         ("coat", "clothing", 200, 1, 2);
 
 
-/* CREATE TABLE department(
+CREATE TABLE department(
     departmeant_id INT NOT NULL AUTO_INCREMENT,
     department_name VARCHAR(255) NOT NULL,
     over_head_costs INT (255) NOT NULL,
     PRIMARY KEY (item_id)
-); */
+);
+
+SELECT * FROM department;
+
+INSERT INTO department(department_name, over_head_costs)
+VALUES ("electronics", $25,000),
+        ("homegoods", $40,000),
+        ("Clothing", $14,00);
 
