@@ -1,4 +1,4 @@
-# Bamazon
+# Bamazon APP
 
 ## Overview
 
