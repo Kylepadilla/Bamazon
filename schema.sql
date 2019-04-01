@@ -17,7 +17,7 @@ CREATE TABLE products(
 SELECT * FROM products;
 
 INSERT INTO products (product_name, department_name, price, weightKg, stock_quantity)
-VALUES ("Iphone x", "electronics", 1200, .143, 10),
+VALUES  ("Iphone x", "electronics", 1200, .143, 10),
         ("Xbox one x", "electronics", 400, 38.10, 5),
         ("Dell 17r4 alienware laptop", "electronics", 2400, 42.00, 2),
         ("CORSAIR K70 RGB MK.2 Mechanical Gaming Keyboard", "electronics", 129.99, 1.25, 6),
@@ -34,7 +34,7 @@ VALUES ("Iphone x", "electronics", 1200, .143, 10),
 CREATE TABLE department(
     department_id INT NOT NULL AUTO_INCREMENT,
     department_name VARCHAR(255) NOT NULL,
-    over_head_costs INT (255) NOT NULL,
+    over_head_costs INT (255),
     product_sales INT(255),
     total_profit INT(255),
     PRIMARY KEY (department_id)
