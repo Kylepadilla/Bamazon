@@ -10,12 +10,13 @@ CREATE TABLE products(
     price FLOAT(10,2) NOT NULL,
     weightKg FLOAT(10,2) NOT NULL,
     stock_quantity INT(10) NOT NULL,
+    product_sales INT(16) NOT NULL,
     PRIMARY KEY (item_id)
 );
 
 SELECT * FROM products;
 
-INSERT INTO products (product_name, department_name, price, weightKg, stock_quantity)
+INSERT INTO products (product_name, department_name, price, weightKg, stock_quantity, product_sales)
 VALUES ("Iphone x", "electronics", 1200, .143, 10),
         ("Xbox one x", "electronics", 400, 38.10, 5),
         ("Dell 17r4 alienware laptop", "electronics", 2400, 42.00, 2),
@@ -39,7 +40,7 @@ CREATE TABLE department(
 
 SELECT * FROM department;
 
-INSERT INTO department(department_name, over_head_costs)
+INSERT INTO department(department_name, over_head_costs, total_sales)
 VALUES ("electronics", $25,000),
         ("homegoods", $40,000),
         ("Clothing", $14,00);
