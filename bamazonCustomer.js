@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 function start() {
 	connection.query('SELECT * FROM products', function(err, res) {
 		if (err) throw err;
-		console.log('\n          ---------------------Welcome to Bamazon-------------------');
+		console.log('\n        ---------------------Welcome to Bamazon-------------------');
 		
 		let arr = [];
 		
@@ -85,8 +85,8 @@ function start() {
 
 				if (qSel <= res[prodSel].stock_quantity) {
 					let sql = `UPDATE products
-    SET ?
-    WHERE ?`;
+   								SET ?
+    							WHERE ?`;
 
 					let data = [
 						{

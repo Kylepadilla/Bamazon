@@ -82,22 +82,75 @@ function menu() {
 }
 
 function viewSales() {
-	connection.query('SELECT * FROM departments', function(err, res) {
+
+	connection.query('SELECT * FROM department', function(err, res) {
+		if (err) throw err;
+		console.log("\n-------sales by department:  ")
+
+		let arr = [];
+		
 		for (var i = 0; i < res.length; i++) {
-			var grossSales = res[i];
+
+			arr.push({
+				department_ID: res[i].department_ID,
+				department_name: res[i].department_name,
+				over_head_costs: res[i].over_head_costs,
+				product_sales: res[i].product_sales,
+				total_profit: res[i].total_profit
+			})
 		}
-
+		console.table(arr);
 		reprompt();
-	});
+		})
+	}
+
+
+function newDepo() {
+	console.log('-----Add a new department------');
+	inquirer
+		.prompt([
+			{
+				type: 'input',
+				name: 'depoName',
+				message: 'Enter the name of the department you want to add'
+			},
+			{
+				type: 'input',
+				name: 'overhead',
+				message: 'Input any overhead associated to the new department: '
+			}
+			
+		])
+		.then(function(z) {
+			let sql = `INSERT INTO department SET ?`;
+
+			let data = [
+				{
+					department_name: z.name
+				},
+				{
+					over_head_costs: z.overhead
+				}
+				
+			];
+			connection.query(sql, data, function(err, results) {
+				if (err) throw err;
+				
+		let arrDepo = [];
+		
+		for (var i = 0; i < z.length; i++) {
+
+			arrDepo.push({
+				department_name:  z.name,
+				over_head_costs:  z.overhead
+			})
+		}
+				console.table(arrDepo)
+				repromptAddProd();
+			});
+		});
 }
 
-function newDepo() {}
-
-function logout() {
-	console.log('\nLog Out successful\n');
-	console.log('returning to supervisor log in......\n');
-	authenticate();
-}
 
 function reprompt() {
 	inquirer
@@ -112,9 +165,49 @@ function reprompt() {
 			if (x.reprompt) {
 				menu();
 			} else {
-				console.log('See you next time!');
+				console.log('\nSee you next time!\n');
 				logout();
 			}
 		});
+}
+function repromptAddProd() {
+	inquirer
+		.prompt([
+			{
+				type: 'confirm',
+				name: 'repromptAdd',
+				message: 'would you like to add another department?'
+			}
+		])
+		.then(function(add) {
+			if (add.repromptAdd) {
+				newDepo();
+			} else {
+				console.log('\nReturning to main menu...');
+				menu();
+			}
+		});
+}
+
+function logout() {
+	inquirer
+	.prompt([
+		{
+			type: 'confirm',
+			name: 'repromptAdd',
+			message: 'Are you sure you want to log out?'
+		}
+	])
+	.then(function(add) {
+		if (!add.logout) {
+			console.log('\nLog Out successful\n');
+			console.log('returning to user log in......\n');
+			authenticate();
+		} else {
+			console.log('\nReturning to main menu...');
+			menu();
+		}
+	});
+
 }
 authenticate();

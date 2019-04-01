@@ -99,11 +99,21 @@ function menu() {
 }
 
 function viewProd() {
-	connection.query('SELECT * FROM products', function(err, res) {
-		for (var i = 0; i < res.length; i++) {
-			
-
-
+			connection.query('SELECT * FROM products', function(err, res) {
+				if (err) throw err;
+				console.log('\n        ---------------------Welcome to Bamazon-------------------');
+				
+				let arr = [];
+				
+				for (var i = 0; i < res.length; i++) {
+		
+					arr.push({
+						item_ID: res[i].item_id,
+						product_name: res[i].product_name,
+						department_name: res[i].department_name,
+						price: res[i].price,
+						stock_quantity: res[i].stock_quantity
+					})
 
 		}
 		console.log('------------------------end of results-----------------------');
