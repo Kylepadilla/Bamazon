@@ -101,21 +101,10 @@ function menu() {
 function viewProd() {
 	connection.query('SELECT * FROM products', function(err, res) {
 		for (var i = 0; i < res.length; i++) {
-			console.log(
-				'id: ' +
-					res[i].item_id +
-					'       product: ' +
-					res[i].product_name +
-					'       department: ' +
-					res[i].department_name +
-					'          price : $' +
-					res[i].price +
-					'           left in stock : ' +
-					res[i].stock_quantity
-			);
-			console.log(
-				'----------------------------------------------------------------------------------------------------------------------------'
-			);
+			
+
+
+
 		}
 		console.log('------------------------end of results-----------------------');
 		reprompt();
@@ -125,22 +114,21 @@ function viewProd() {
 function lowInv() {
 	connection.query('SELECT * FROM products', function(err, res) {
 		console.log('Low inventory products: \n');
+		let arr = [];
 		for (i = 0; i < res.length; i++) {
 			if (res[i].stock_quantity <= 5) {
-				console.log(
-					'id: ' +
-						res[i].item_id +
-						'       product: ' +
-						res[i].product_name +
-						'       department: ' +
-						res[i].department_name +
-						'          price : $' +
-						res[i].price +
-						'           left in stock : ' +
-						res[i].stock_quantity
-				);
+				arr.push({
+					item_ID: res[i].item_id,
+					product_name: res[i].product_name,
+					department_name: res[i].department_name,
+					price: res[i].price,
+					stock_quantity: res[i].stock_quantity
+				})
+
 			}
 		}
+		console.table(arr)
+
 		console.log('------------------------end of results-----------------------');
 		reprompt();
 	});
@@ -148,6 +136,23 @@ function lowInv() {
 
 function invAdd() {
 	connection.query('SELECT * FROM products', function(err, res) {
+
+		let arr = [];
+		
+		for (var i = 0; i < res.length; i++) {
+
+			arr.push({
+				item_ID: res[i].item_id,
+				product_name: res[i].product_name,
+				department_name: res[i].department_name,
+				price: res[i].price,
+				stock_quantity: res[i].stock_quantity
+			})
+		}
+
+		console.table(arr)
+
+
 		inquirer
 			.prompt([
 				{
@@ -183,9 +188,9 @@ function invAdd() {
 				var stockInput = res[prodSel].stock_quantity;
 				var pName = res[prodSel].product_name;
 
-				let sql = `UPDATE products
-    SET ?
-    WHERE ?`;
+				let sql = ` UPDATE products
+    						SET ?
+    						WHERE ?`;
 
 				let data = [
 					{
@@ -286,7 +291,7 @@ function reprompt() {
 			if (x.reprompt) {
 				menu();
 			} else {
-				console.log('See you next time!');
+				console.log('\nSee you next time!\n');
 				logout();
 			}
 		});
@@ -304,7 +309,7 @@ function repromptAddProd() {
 			if (add.repromptAdd) {
 				prodAdd();
 			} else {
-				console.log('Returning to main menu...');
+				console.log('\nReturning to main menu...');
 				menu();
 			}
 		});

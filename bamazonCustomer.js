@@ -12,24 +12,23 @@ var connection = mysql.createConnection({
 function start() {
 	connection.query('SELECT * FROM products', function(err, res) {
 		if (err) throw err;
-		console.log('\n---------------------Welcome to Bamazon-------------------');
+		console.log('\n          ---------------------Welcome to Bamazon-------------------');
+		
+		let arr = [];
+		
 		for (var i = 0; i < res.length; i++) {
-			console.log(
-				'id: ' +
-					res[i].item_id +
-					'       product: ' +
-					res[i].product_name +
-					'       department: ' +
-					res[i].department_name +
-					'          price : $' +
-					res[i].price +
-					'           left in stock : ' +
-					res[i].stock_quantity
-			);
-			console.log(
-				'----------------------------------------------------------------------------------------------------------------------------'
-			);
+
+			arr.push({
+				item_ID: res[i].item_id,
+				product_name: res[i].product_name,
+				department_name: res[i].department_name,
+				price: res[i].price,
+				stock_quantity: res[i].stock_quantity
+			})
 		}
+
+		console.table(arr)
+		
 		console.log('------------------------end of results-----------------------');
 
 		inquirer
@@ -104,13 +103,17 @@ function start() {
 					connection.query(sql, data, function(err, results) {
 						if (err) throw err;
 
+
+
+
+
 						console.log('\n\n------Congratulations! your order has been placed-------\n');
-						console.log('item: ' + res[prodSel].product_name + '     quantity:' + qSel);
+						console.log('     Item: ' + res[prodSel].product_name + "      Price: " + res[prodSel].price  + '     Quantity:' + qSel);
 						console.log('\nsubtotal: $' + subtotal);
 						console.log('shipping: $' + shippingCost);
 						console.log('tax: $' + tax);
 						console.log('total: $' + total);
-						console.log('\n' + 'your package should arrive in ' + response.ship);
+						console.log('\n' + 'Your order has been processed. Your item should arrive in ' + response.ship + '\n\n');
 
 						newOrder();
 					});
@@ -138,7 +141,7 @@ function newOrder() {
 			if (x.reprompt) {
 				start();
 			} else {
-				console.log('Thanks for choosing Bamazon, see you next time!');
+				console.log('\nThanks for choosing Bamazon, see you next time!');
 			}
 		});
 }
