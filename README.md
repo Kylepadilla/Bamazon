@@ -19,8 +19,7 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 * Click here to watch a quick video on how Bamazon customer portal works!
 
 ### Manager Portal
-
-* The Bamazon Manager Portal will allow authorized users to chose from the following menu:
+* The Bamazon Manager Portal requires user authentication using environmental variables and the dotenv node module. additionally, Bamazon will allow authorized users to chose from the following menu:
 
     * View Products for Sale: 
     
@@ -38,6 +37,8 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 
   * If a manager selects `Add New Product`, Bamazon will allow the manager to add a completely new product to the store.
 
-*Click Here to see how it Works!
+* Bamzaon managers will also have the ability to log out and return to the user authentication prompt.
+
+* Click Here to see how it Works!
 
 ###Supervisor Portal
