@@ -1,9 +1,8 @@
+var dotenv = require('dotenv').config()
 
-console.log("user authentication is loaded")
-exports.bamazon = {
-
- username: process.env.username,
- password: process.env.password
-
-};
+var USERNAME = dotenv.parsed.USERNAME
+var PASSWORD = dotenv.parsed.PASSWORD
+module.exports = {
+    USERNAME, PASSWORD
+}
 

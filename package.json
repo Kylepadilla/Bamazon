@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Kylepadilla/Bamazon#readme",
   "dependencies": {
+    "dotenv": "^7.0.0",
     "inquirer": "^6.2.2",
     "mysql": "^2.16.0"
   }

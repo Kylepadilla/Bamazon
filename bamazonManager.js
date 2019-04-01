@@ -1,16 +1,16 @@
+
 var inquirer = require("inquirer");
 var mysql = require("mysql");
-var Auth = require("./keys");
-var auth = new Auth(keys.bamazon);
+var auth = require("./keys");
+
 
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
     password: "",
-    database: "bamazon_db"
+    database: "bam_db"
   });
-  
   
 
   function authenticate(){
@@ -46,74 +46,78 @@ var connection = mysql.createConnection({
 
     var unRes = response.username;
     var passRes = response.password;
-        
-if(unRes == auth.username && passRes == auth.username){
-console.log("Success! Access Granted");
+
+if(unRes === auth.USERNAME && passRes === auth.PASSWORD){
+console.log("\n\nSuccess! Access Granted\n\n");
     menu()
 }else{
-    Authenticate()
+console.log("\nincorrect password, try again\n")
+    authenticate()
 }
 })
+
 }
 
 // Menu that list availble options
 function menu(){
 inquirer.prompt([
     {
-        type: "checkbox",
+        type: "list",
         name: "choices",
         message: "Welcome to the Manager Protal (v1.0.01)\nWhat would you like to do?",
-        choices: ["View products for sale", "View Low Inventory", "Add to Inventory", "Add new Product"]
+        choices: ["View products for sale", "View Low Inventory", "Add to Inventory", "Add new Product", "Log Out"]
     }
-]).then(function(menueRes){
-    var prodView = "View products for sale"
-    var invView = "View Low Inventory"
-    var addInv = "Add to Inventory"
-    var addProd = "Add new Product"
+]).then(function(menuRes){
 
-
-    // View products for sale
-    if (menueRes.choices == prodView){
-        viewProd()}
-
-    // View Low Inventory
-    else if(menueRes.choices == invView){
-        lowInv()}
-    // Add to Inventory
-    else if(menueRes.choices == addInv){
-        invAdd()}
-        
-    // Add new Product
-    else if(menueRes.choices == addProd){
-        prodAdd();
-        }
+    switch(menuRes.choices){
+            // View products for sale
+        case "View products for sale": viewProd();
+        break;
+            // View Low Inventory
+        case "View Low Inventory": lowInv();
+        break;
+            // Add to Inventory
+        case "Add to Inventory": invAdd();
+        break;
+            // Add new Product
+        case "Add new Product":  prodAdd();
+        break;
+            //logs user out
+        case "Log Out":  logout();
+        break;
+    }
 })
-}
-
+};
 
 function viewProd(){
+    connection.query("SELECT * FROM products", function(err, res){
     for(var i = 0; i < res.length; i ++ ){
     console.log("id: "+ res[i].item_id + "       product: " + res[i].product_name + "       department: " + res[i].department_name + "          price : $" + res[i].price + "           left in stock : " +  res[i].stock_quantity)
     console.log("----------------------------------------------------------------------------------------------------------------------------")
     }
     console.log("------------------------end of results-----------------------")
     reprompt()
-}
+})
+};
 
 
 function lowInv(){
+    connection.query("SELECT * FROM products", function(err, res){
+        console.log("Low inventory products: \n")
     for(i = 0; i < res.length; i++){
         if(res[i].stock_quantity <= 5){
-            console.log("Low inventory products: \n")
             console.log("id: "+ res[i].item_id + "       product: " + res[i].product_name + "       department: " + res[i].department_name + "          price : $" + res[i].price + "           left in stock : " +  res[i].stock_quantity)
         }
     
     }
     console.log("------------------------end of results-----------------------")
     reprompt()
-    }
+})
+};
 
 function invAdd(){
+    connection.query("SELECT * FROM products", function(err, res){
+
     inquirer.prompt([{
         type: "input",
         name: "productSel",
@@ -139,9 +143,11 @@ function invAdd(){
     }
 }}
 ]).then(function(y){
-    var prodSel = y.prodSel -1
-    var qSel = parseInt(y.quantity)
-    
+
+    var prodSel = y.productSel -1
+    var qSel = parseInt(y.addQuant)
+    var stockInput = res[prodSel].stock_quantity
+    var  pName = res[prodSel].product_name
 
     let sql = 
     `UPDATE products
@@ -150,45 +156,33 @@ function invAdd(){
 
     let data = [
         {
-            stock_quantity: (res[prodSel].stock_quantity + qSel)
+            stock_quantity: (stockInput + qSel)
         }
         ,{
-            item_id: y.purchase
+            item_id: y.productSel
         }
     ];
     connection.query(sql, data, function(err, results){
         if (err) throw err ;
-        console.log("Success! " + qSel + "units have been added to " + res[prodSel].product_name)
+        console.log("Success! " + qSel + " units have been added to " + pName)
+        reprompt()
     })
+})
 })
 }
 
 
 function prodAdd (){
     console.log("-----Add a new product------")
-
     inquirer.prompt([
         {
         type: "input",
         name: "name",
-        message: "Enter the name of the product you want to add",
-        validate: function (value){
-            if(isNaN(value) == false && parseInt(value) <= res.length && parseInt(value) > 0){
-            return true;
-          } else{
-            return false;
-          }}
-    },
+        message: "Enter the name of the product you want to add"},
     {
         type: "input",
         name: "department",
-        message: "Department: ",
-        validate: function(value){
-            if(isNaN(value)){
-                console.log() 
-            return false;
-            } else{
-            return true}}},
+        message: "Department: "},
     {
         type: "input",
         name: "price",
@@ -204,11 +198,9 @@ function prodAdd (){
     }
 
     ]).then(function(z){
-    
         let sql = 
         `INSERT INTO products
-        SET ?
-        WHERE ?`;
+        SET ?`;
     
         let data = [
             {
@@ -221,7 +213,7 @@ function prodAdd (){
                 price: z.price
             },
             {
-                weightKg: z.weightKg
+                weightKg: z.weight
             },
             {
                 stock_quantity: z.quantity
@@ -229,10 +221,10 @@ function prodAdd (){
         ];
         connection.query(sql, data, function(err, results){
             if (err) throw err ;
-            console.log("Success! added:  " +  z.name + " || " + z.department + " || " + z.price + z.weightKg + " || " + z.stock_quantity)
-
+            console.log("Success! added:  " +  z.name + " || " + z.department + " || " + z.price + " || " + z.weight + " || " + z.quantity)
+            repromptAddProd()
         })
-    });repromptAddProd()
+    });
 
 }
 function reprompt(){
@@ -244,9 +236,10 @@ function reprompt(){
         }
     ]).then(function (x){
         if (x.reprompt){
-        start()
+        menu()
         }else{
             console.log("See you next time!")
+            logout()
         }
     })
 }
@@ -265,6 +258,12 @@ function repromptAddProd(){
             menu()
         }
     })
+}
+
+function logout(){
+    console.log("\nLog Out successful\n")
+    console.log("returning to user log in......\n")
+    authenticate()
 }
 
   authenticate()
