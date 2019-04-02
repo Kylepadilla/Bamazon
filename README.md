@@ -18,6 +18,8 @@ Once the customer has placed the order, the Bamazon app should check if there is
 
 However, if Bamazon _does_ have enough of the product, the app will fulfill the customer's order. the Bamazon SQL database will automatically update to reflect the remaining quantity.Once the update goes through,  the total cost of their purchase will be displayed.
 
+Bamazon also feature built in shipping and tax for each order!.
+
 * Click here to watch a quick video on how Bamazon customer portal works!
 
 ### Manager Portal
