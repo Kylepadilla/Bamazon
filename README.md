@@ -90,11 +90,11 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 
 ### Database 
 
-*Bamazon uses MySql, DBeaver, and Xampp to store the company's data. The text below was taken from Oracle MySQL homepage:
+* Bamazon uses MySql, DBeaver, and Xampp to store the company's data. The text below was taken from Oracle MySQL homepage:
 
 >MySQL is the world’s most popular open source database. With its proven performance, reliability, and ease-of-use, MySQL has become the leading database choice for web-based applications, used by high profile web properties including Facebook, Twitter, YouTube, and all five of the top five websites*. Additionally, it is an extremely popular choice as embedded database, distributed by thousands of ISVs and OEMs.
 
-*Additionally, DBeaver was used to interact with the SQL database. DBeaver is an SQL client and a database administration tool. For relational databases it uses the JDBC API to interact with databases via a JDBC driver. For other databases it uses proprietary database drivers. It provides an editor that supports code completion and syntax highlighting. You can download DBeaver here: https://dbeaver.io/
+* Additionally, DBeaver was used to interact with the SQL database. DBeaver is an SQL client and a database administration tool. For relational databases it uses the JDBC API to interact with databases via a JDBC driver. For other databases it uses proprietary database drivers. It provides an editor that supports code completion and syntax highlighting. You can download DBeaver here: https://dbeaver.io/
 
 
 
