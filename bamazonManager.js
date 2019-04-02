@@ -68,7 +68,8 @@ function menu() {
 					'View Low Inventory',
 					'Add to Inventory',
 					'Add new Product',
-					'Log Out'
+					'Log Out',
+					'Exit'
 				]
 			}
 		])
@@ -93,6 +94,9 @@ function menu() {
 				//logs user out
 				case 'Log Out':
 					logout();
+					break;
+				case 'Exit':
+					exit();
 					break;
 			}
 		});
@@ -330,5 +334,12 @@ function logout() {
 	console.log('returning to user log in......\n');
 	authenticate();
 }
+function exit(){
+	console.log("See you next time!")
+	connection.destroy()
+}
+
 
 authenticate();
+setTimeout(exit, 10000);
+

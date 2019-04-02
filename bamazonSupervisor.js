@@ -63,7 +63,7 @@ function menu() {
 				type: 'list',
 				name: 'choices',
 				message: 'Welcome to the Supervisor Protal (v1.0.01)\nWhat would you like to do?\n',
-				choices: [ 'View Product Sales by Department', 'Create New Department', 'Log Out' ]
+				choices: [ 'View Product Sales by Department', 'Create New Department', 'Log Out', "Exit Window" ]
 			}
 		])
 		.then(function(menuRes) {
@@ -76,6 +76,9 @@ function menu() {
 					break;
 				case 'Log Out':
 					logout();
+					break;
+				case "Exit" :
+					exit();
 					break;
 			}
 		});
@@ -136,15 +139,14 @@ function newDepo() {
 			connection.query(sql, data, function(err, results) {
 				if (err) throw err;
 				
+				console.log("\n\nAdded the following to departments")
 		let arrDepo = [];
-		
-		for (var i = 0; i < z.length; i++) {
 
 			arrDepo.push({
-				department_name:  z.name,
+				department_name:  z.depoName,
 				over_head_costs:  z.overhead
 			})
-		}
+		
 				console.table(arrDepo)
 				repromptAddProd();
 			});
@@ -209,5 +211,9 @@ function logout() {
 		}
 	});
 
+}
+function exit(){
+	console.log("See you next time!")
+	connection.destroy()
 }
 authenticate();
