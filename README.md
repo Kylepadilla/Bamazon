@@ -1,4 +1,4 @@
-# Bamazon
+# Bamazon Application
 
 ## Overview
 
@@ -8,6 +8,8 @@ Bamazon is an Amazon-like storefront with the MySQL skills I learned this unit. 
 ### Customer Portal
 
  The Bamazon app prompts users with two messages. One that ask the customer the ID of the product they would like to buy. The second message asks how many units of the product they would like to buy.
+
+ ![Customer Menu Gif](./assets/gifs/CustomerCheckCrop.png)
 
 Once the customer has placed the order, the Bamazon app should check if there is enough of the product to meet the customer's request. If not, the Bamazon will log the phrase 
 >`oooops! It looks like we dont have enough inn stock to fill this order. Try reducing the number of items you are attempting to purchase.`
@@ -21,13 +23,42 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 ### Manager Portal
 * The Bamazon Manager Portal requires user authentication using environmental variables and the dotenv node module. additionally, Bamazon will allow authorized users to chose from the following menu:
 
+
+    * Authentication: 
+
+    ![Supervisor low inv Image](./assets/gifs/SuperAuth.gif)
+
+
+
+
     * View Products for Sale: 
-    
-    * View Low Inventory
-    
+
+    ![Manager Products Image](./assets/images/managerprods.png)
+
+
+
+
+    * View Low Inventory:
+
+    ![Manager low inv Image](./assets/images/Low-Inv.png)
+   
+   
+   
     * Add to Inventory
-    
+
+    ![Manager low inv Image](./assets/images/AddInv.png)
+
+
+
     * Add New Product
+
+
+    ![Manager low inv Image](./assets/images/AddProd.png)
+
+
+
+
+
 
   * If a manager selects `View Products for Sale`, Bamazon will list every available item: the item IDs, names, prices, and quantities. If a manager selects `View Low Inventory`, Bamazon will list all items with an inventory count lower than five. If a manager selects `Add to Inventory`, Bamazon will display a prompt that will let the manager "add more" of any item currently in the store. If a manager selects `Add New Product`, Bamazon will allow the manager to add a completely new product to the store.
 
@@ -35,9 +66,12 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 
 * Click Here to see how it Works!
 
-###Supervisor Portal
+### Supervisor Portal
 * The Bamazon Supervisor Portal comes equiped with environamental variables and the 'dotenv' module to handle user authentication. Once a Bamzon supervisor is verified, they will be greeted with the menu prompt as shown below: 
 
+
+
+![Supervisor menu Image](./assets/images/Supermen.png)
 
 
 
@@ -45,7 +79,7 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 
 * This menu will alow supervisors to view product sales by department and add new departments. The bamazon supervisor portal is still in development, so expect more features to come in the near future!
 
-###Dependencies
+### Dependencies
 
 * dotenv (7.0.0): Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
 
@@ -54,7 +88,7 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 * mysql(2.16.0): This is a node.js driver for mysql. It is written in JavaScript, does not require compiling, and is 100% MIT licensed.
 
 
-###Database 
+### Database 
 
 *Bamazon uses MySql, DBeaver, and Xampp to store the company's data. The text below was taken from Oracle MySQL homepage:
 
