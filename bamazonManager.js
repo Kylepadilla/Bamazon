@@ -120,9 +120,11 @@ function viewProd() {
 					})
 
 		}
+		console.table(arr);
 		console.log('------------------------end of results-----------------------');
-		reprompt();
+
 	});
+	reprompt();
 }
 
 function lowInv() {
@@ -334,6 +336,7 @@ function logout() {
 	console.log('returning to user log in......\n');
 	authenticate();
 }
+
 function exit(){
 	console.log("See you next time!")
 	connection.destroy()
@@ -341,5 +344,5 @@ function exit(){
 
 
 authenticate();
-setTimeout(exit, 10000);
+
 
