@@ -45,7 +45,7 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 
 * This menu will alow supervisors to view product sales by department and add new departments. The bamazon supervisor portal is still in development, so expect more features to come in the near future!
 
-###Dependencies
+### Dependencies
 
 * dotenv (7.0.0): Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
 
@@ -54,7 +54,7 @@ However, if Bamazon _does_ have enough of the product, the app will fulfill the 
 * mysql(2.16.0): This is a node.js driver for mysql. It is written in JavaScript, does not require compiling, and is 100% MIT licensed.
 
 
-###Database 
+### Database 
 
 *Bamazon uses MySql, DBeaver, and Xampp to store the company's data. The text below was taken from Oracle MySQL homepage:
 
