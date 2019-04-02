@@ -1,4 +1,4 @@
-# Bamazon
+# Bamazon Application
 
 ## Overview
 
