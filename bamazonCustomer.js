@@ -102,7 +102,7 @@ function start() {
 
 					connection.query(sql, data, function(err, results) {
 						if (err) throw err;
-
+					
 
 
 
@@ -114,7 +114,7 @@ function start() {
 						console.log('tax: $' + tax);
 						console.log('total: $' + total);
 						console.log('\n' + 'Your order has been processed. Your item should arrive in ' + response.ship + '\n\n');
-
+						
 						newOrder();
 					});
 				} else {
@@ -142,6 +142,7 @@ function newOrder() {
 				start();
 			} else {
 				console.log('\nThanks for choosing Bamazon, see you next time!');
+				connection.destroy();
 			}
 		});
 }
